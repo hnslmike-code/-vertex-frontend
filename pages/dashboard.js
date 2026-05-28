@@ -6,7 +6,7 @@ export default function Dashboard() {
   useEffect(() => {
     const user = JSON.parse(localStorage.getItem("user"));
 
-    fetch(`http://YOUR_AWS_IP:5000/dashboard/${user._id}`)
+    fetch(`http://51.21.135.162:5000/dashboard/${user._id}`)
       .then(res => res.json())
       .then(setData);
   }, []);
