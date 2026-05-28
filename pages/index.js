@@ -5,7 +5,7 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const login = async () => {
-    const res = await fetch("http://YOUR_AWS_IP:5000/login", {
+    const res = await fetch("http://51.21.135.162:5000/login", {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password })
