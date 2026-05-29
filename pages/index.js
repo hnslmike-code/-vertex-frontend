@@ -5,16 +5,26 @@ export default function Login() {
   const [password, setPassword] = useState("");
 
   const login = async () => {
-    const res = await fetch("http://51.21.135.162:5000/login", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password })
-    });
+  const res = await fetch("http://51.21.135.162:5000/login", {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password })
+  });
 
-    const data = await res.json();
-    localStorage.setItem("user", JSON.stringify(data));
-    window.location.href = "/dashboard";
-  };
+  const data = await res.json();
+
+  // ❌ HANDLE LOGIN FAILURE
+  if (!res.ok) {
+    alert(data.message || "Login failed");
+    return;
+  }
+
+  // ✅ SAVE ONLY VALID USER
+  localStorage.setItem("user", JSON.stringify(data));
+
+  // go to dashboard
+  window.location.href = "/dashboard";
+};
 
   return (
     <div style={{ textAlign: "center", marginTop: 100 }}>
